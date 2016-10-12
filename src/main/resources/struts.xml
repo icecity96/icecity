@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+   "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- 根据作者名字获取其所著图书，若该作者不存在或无图书怎不跳转，否则呈现图书页面 -->
+		<action name="getTitles" class="com.action.SearchAuthor"
+			method="getTitlesByName">
+			<result name="success">/index.jsp</result>
+			<result name="failure">/index.html</result>
+		</action>
+		<!-- 删除图书操作，异步处理，不会跳转页面 -->
+		<action name="deleteBook" class="com.action.DeleteBook" method="del">
+			<result name="success"></result>
+		</action>
+		<!-- 新增加图书操作,若作者id不存在，则跳转到新增作者，否则跳转到成功页面 -->
+		<action name="addbook" class="com.action.UpdataBook" method="addBook">
+			<result name="success">/success.html</result>
+			<result name="input">/author.html</result>
+		</action>
+		<!-- 新增作者 -->
+		<action name="addauthor" class="com.action.AddAuthor" method="add">
+			<result name="success">/success.html</result>
+		</action>
+		<!-- 更新图书 -->
+		<action name="updatebook" class="com.action.UpdataBook" method="up">
+			<result name="success">/success.html</result>
+		</action>
+	</package>
+</struts>
